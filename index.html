@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Tracker</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, sans-serif;
+      max-width: 640px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      color: #1a1a1a;
+      background: #f5f5f5;
+    }
+
+    header {
+      margin-bottom: 1.5rem;
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1.25rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .card h2 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #888;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      font-size: 1.75rem;
+      font-weight: 600;
+    }
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    input {
+      flex: 1 1 120px;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      background: #2563eb;
+      color: #fff;
+    }
+
+    button:hover { background: #1d4ed8; }
+
+    button.delete {
+      background: #dc2626;
+    }
+
+    button.delete:hover { background: #b91c1c; }
+
+    button.use {
+      background: #16a34a;
+    }
+
+    button.use:hover { background: #15803d; }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    ul { list-style: none; }
+
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      background: #fff;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    }
+
+    .item-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .item-name { font-weight: 500; }
+
+    .item-meta {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 0.15rem;
+    }
+
+    .item-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .empty {
+      text-align: center;
+      color: #999;
+      padding: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Pacific Time: <time id="clock"></time>
+  </header>
+
+  <section class="summary">
+    <div class="card">
+      <h2>Total Leftover</h2>
+      <p id="totalQty">0</p>
+    </div>
+    <div class="card">
+      <h2>Leftover Value</h2>
+      <p id="totalValue">$0.00</p>
+    </div>
+  </section>
+
+  <form id="addForm">
+    <input name="name" placeholder="Item name" required>
+    <input name="quantity" type="number" min="1" step="1" placeholder="Qty" required>
+    <input name="price" type="number" min="0" step="0.01" placeholder="Price" required>
+    <button type="submit">Add</button>
+  </form>
+
+  <ul id="itemList"></ul>
+
+  <script src="app.js"></script>
+</body>
+</html>
